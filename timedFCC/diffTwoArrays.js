@@ -15,4 +15,4 @@ function diffArray(arr1, arr2) {
   
   diffArray([1, 2, 3, 5], [1, 2, 3, 4, 5]);
   
-  //4m 17s
+  //8m 17s
