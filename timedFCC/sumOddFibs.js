@@ -5,23 +5,28 @@
 // For example, sumFibs(10) should return 10 because all odd Fibonacci numbers less than or equal to 10 are 1, 1, 3, and 5.
 
 function sumFibs(num) {
-  var oddfibonacciNumber = [1, 1];
-  var fibonacciNumber1 = 1;
-  var fibonacciNumber2 = 1;
-  var fibSum = 0;
+  if (num < 0) return -1;
+  if (num === 0 || num === 1) return 1;
 
-  for (var i = 0; fibSum <= num; i++) {
+  var fib1 = 0;
+  var fib2 = 1;
+  var fibSum = 1;
+
+  var total = 0;
+
+  for (var i = 1; fibSum <= num; i++) {
     if (fibSum % 2 !== 0) {
-      oddfibonacciNumber.push(fibSum);
+      total += fibSum;
     }
-    fibSum = fibonacciNumber1 + fibonacciNumber2;
-    fibonacciNumber1 = fibonacciNumber2;
-    fibonacciNumber2 = fibSum;
+
+    fibSum = fib1 + fib2;
+    fib1 = fib2;
+    fib2 = fibSum;
   }
 
-  return oddfibonacciNumber.reduce(
-    (accumulator, currentValue) => accumulator + currentValue
-  );
+  console.log(total);
 }
 
-sumFibs(4);
+sumFibs(1000);
+
+//   14m22s24
