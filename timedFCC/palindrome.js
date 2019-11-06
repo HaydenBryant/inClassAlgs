@@ -1,21 +1,23 @@
 function palindrome(str) {
-    var alph = "abcdefghijklmnopqrstuvwxyz1234567890";
     // Good luck!
+    // var junk = /\s+|_|-|:+/g;
 
-    newStr = "";
+    // str = str.toLowerCase().replace(junk, "")
 
-    for(var i = 0; i < str.length; i++){
-        if(alph.includes(str[i].toLowerCase())){
-            newStr += str[i].toLowerCase();
+        newStr = ""
+    
+        for(var i = 0; i < str.length; i++){
+            if(str[i].match(/^[0-9a-z]+$/)){
+                newStr += str[i];
+            }
         }
-    }
-
-    console.log(newStr);
-
-    return true;
-  }
-  
-  
-  
-  palindrome("eyeEFV457 /.{}");
+    
+        if(newStr === newStr.split("").reverse().join("")){
+            return true;
+        } else {
+            return false;
+        }
+      }
+      
+      palindrome("0_0 (: /-\ :) 0-0");
   
