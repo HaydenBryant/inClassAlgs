@@ -1,22 +1,20 @@
 #include <stdio.h>
 #include <cs50.h>
-#include <math.h>
 
 
 
 int main(void)
 {
     int coins = 0;
-    float cash;
+    float change;
     
     do
     {
-        cash = get_float("Change: ");
+        change = get_float("Change: ");
     }
-    while (cash < 0);
+    while (change < 0);
     
-    int change = round(cash * 100);
-    
+        
     while ( change >= 25 ) 
     {
            coins += 1;
