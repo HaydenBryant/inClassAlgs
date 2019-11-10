@@ -51,9 +51,10 @@ void print(int input){
 }
 
 int main(void){
-    int input = get_int("Height: ");
-    if(input < 1 || input > 8){
-        return main();
+    do
+    {
+        int input = get_int("Height: ");
     }
+    while(input < 1 || input > 8);
     print(input);
 }
