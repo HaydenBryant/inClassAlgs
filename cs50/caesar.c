@@ -7,8 +7,9 @@ int main(int argc, string argv[])
 {
     if(argc == 2)
     {
-        const int KEY = atoi(argv[1]);
-
+        int KEY = atoi(argv[1]);
+        int length = strlen(argv[1]);
+        
     }
     else
     {
