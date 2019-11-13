@@ -9,7 +9,14 @@ int main(int argc, string argv[])
     {
         int KEY = atoi(argv[1]);
         int length = strlen(argv[1]);
-        
+        for(int i = 0; i < length; i++)
+        {
+            if (isdigit(argv[1][i]) == false)
+            {
+                printf("Usage: ./caesar key");
+                return 1;
+            }
+        }
     }
     else
     {
