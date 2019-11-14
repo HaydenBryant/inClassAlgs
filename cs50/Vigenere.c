@@ -7,28 +7,20 @@ int main(int argc, string argv[])
 {
     if(argc == 2)
     {
-        int key = 0;
+        int 
         int length = strlen(argv[1]);
-        
         for(int i = 0; i < length; i++)
         {
             if (isdigit(argv[1][i]) == false)
             {
                 printf("Usage: ./caesar key");
                 return 1;
+            } else 
+            {
+                key = atoi(argv[1]);
             }
         }
-        
-        key = atoi(argv[1]) % 26;
-        
-        string plainString = get_string("plaintext: ");
-        length = strlen(plainString);
-        
-        for(int i = 0; i < length; i++)
-        {
-            plainString[i] = plainString[i] + 1;
-        }
-        printf("%s", plainString);
+
     }
     else
     {
