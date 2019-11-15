@@ -26,7 +26,7 @@ int main(int argc, string argv[])
         
         for(int i = 0; i < length; i++)
         {
-            plainString[i] = plainString[i] + 1;
+            plainString[i] = plainString[i] + key;
         }
         printf("%s", plainString);
     }
