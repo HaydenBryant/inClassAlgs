@@ -26,9 +26,40 @@ int main(int argc, string argv[])
         
         for(int i = 0; i < length; i++)
         {
-            plainString[i] = plainString[i] + key;
+           if(isalpha(plainString[i]) != 0)
+           {
+               if(isupper(plainString[i]))
+               {
+                   if(plainString[i] + key > 'Z')
+                   {
+                       plainString[i] = 'A' + (('Z' - 'A') % key);
+                    }
+                    else
+                    {
+                        plainString[i] = plainString[i] + key;
+                    }
+                }
+                else
+                {
+                    if(plainString[i] + key > 'z')
+                    {
+                        plainString[i] = 'a' + (('z' - 'a') % key);
+                    }
+                    else
+                    {
+                        plainString[i] = plainString[i] + key;
+                    }
+                }
+           }
+           else
+           {
+                printf("Usage: ./caesar key");
+                printf("error here");
+                return 1;
+           }
+           
         }
-        printf("%s", plainString);
+        printf("Cipher Text: %s\n", plainString);
     }
     else
     {
