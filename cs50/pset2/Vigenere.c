@@ -17,7 +17,45 @@ int main(int argc, string argv[])
             }
         }
         string key = argv[1];
-        printf("%s", key);
+        // keyLen = strlen(argv[1]);
+
+        string plainString = get_string("plaintext: ");
+        stringLen = strlen(plainString);
+
+        for(int i = 0; i < stringLen; i++)
+        {
+            if(isalpha(plainString[i]) != 0)
+            {
+                if(isupper(plainString[i]))
+                {
+                    if(plainString[i] + key[i] > 'Z')
+                    {
+                        plainString[i] = 'A' + (('Z' - 'A') % key[i]);
+                    }
+                    else
+                    {
+                        plainString[i] = plainString[i] + key[i];
+                    }
+                }
+                else
+                {
+                    if(plainString[i] + key[i] > 'z')
+                    {
+                        plainString[i] = 'a' + (('z' - 'a') % key[i]);
+                    }
+                    else
+                    {
+                        plainString[i] = plainString[i] + key[i];
+                    }
+                }
+            }
+            else
+            {
+                printf("Usage: ./vigenere keyword");
+                return 1;  
+            }
+        }
+        printf("%s", plainString);
     }
     else
     {

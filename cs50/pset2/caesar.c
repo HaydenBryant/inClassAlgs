@@ -54,12 +54,11 @@ int main(int argc, string argv[])
            else
            {
                 printf("Usage: ./caesar key");
-                printf("error here");
                 return 1;
            }
            
         }
-        printf("Cipher Text: %s\n", plainString);
+        printf("Ciphertext: %s\n", plainString);
     }
     else
     {
