@@ -32,7 +32,7 @@ int main(int argc, string argv[])
                {
                    if(plainString[i] + key > 'Z')
                    {
-                       plainString[i] = 'A' + (('Z' - 'A') % key);
+                       plainString[i] = 'A' + (plainString[i] + key) % ('Z' - 'A');
                     }
                     else
                     {
@@ -43,7 +43,7 @@ int main(int argc, string argv[])
                 {
                     if(plainString[i] + key > 'z')
                     {
-                        plainString[i] = 'a' + (('z' - 'a') % key);
+                        plainString[i] = 'a' + (plainString[i] + key) % ('a' + 26);
                     }
                     else
                     {
