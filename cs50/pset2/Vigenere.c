@@ -18,8 +18,8 @@ int main(int argc, string argv[])
                 return 1;
             }
         }
-        int key = shift(argv[1][0]);
-        // printf("%i\n", key);
+        string key = argv[1];
+//         printf("%i\n", key);
 
         string plainString = get_string("plaintext: ");
         int stringLen = strlen(plainString);
@@ -30,24 +30,24 @@ int main(int argc, string argv[])
            {
                if(isupper(plainString[i]))
                {
-                   if(plainString[i] + key > 'Z')
+                   if(plainString[i] + shift(key[(i % strlen(key))]) > 'Z')
                    {
-                       plainString[i] = 'A' + (plainString[i] + key) % ('A' + 26);
+                       plainString[i] = 'A' + (plainString[i] + shift(key[(i % strlen(key))])) % ('Z' - 'A');
                     }
                     else
                     {
-                        plainString[i] = plainString[i] + key;
+                        plainString[i] = plainString[i] + shift(key[(i % strlen(key))]);
                     }
                 }
                 else
                 {
-                    if(plainString[i] + key > 'z')
+                    if(plainString[i] + shift(key[(i % strlen(key))]) > 'z')
                     {
-                        plainString[i] = 'a' + (plainString[i] + key) % ('a' + 26);
+                        plainString[i] = 'a' + (plainString[i] + shift(key[(i % strlen(key))])) % ('a' + 26);
                     }
                     else
                     {
-                        plainString[i] = plainString[i] + key;
+                        plainString[i] = plainString[i] + shift(key[(i % strlen(key))]);
                     }
                 }
            }
@@ -58,7 +58,7 @@ int main(int argc, string argv[])
            }
            
         }
-        printf("Ciphertext: %s\n", plainString)
+        printf("Ciphertext: %s\n", plainString);
     }
     else
     {
@@ -69,8 +69,8 @@ int main(int argc, string argv[])
 
 int shift(char c)
 {
-   string[26] lowAlph = "abcdefghijklmnopqrstuvwxyz";
-   string[26] capAlph = "ABCDEFGHIJLKMNOPQRSTUVWXYZ";
+   string lowAlph = "abcdefghijklmnopqrstuvwxyz";
+   string capAlph = "ABCDEFGHIJLKMNOPQRSTUVWXYZ";
 
    if(isupper(c))
    {
@@ -105,5 +105,5 @@ int shift(char c)
        printf("Usage: ./vigenere keyword");
        return 1;      
    }
-   
+    return 1;
 }
