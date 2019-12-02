@@ -10,16 +10,21 @@ int main(int argc, char *argv[])
     }
 
     FILE *file = fopen(argv[1], "r");
+    
+    char *infile = argv[1];
 
-    if(file == null)
+    if(file == NULL)
     {
-        fprintf(stderr, "%s does not exist.\n", infile);
+        sprintf(stderr, "%s does not exist.\n", infile);
         return 2;
     }
 
-    char *infile = argv[1];
-
     unsigned char buffer[512];
 
+    int count = 0;
 
+    char filename[8];
+    FILE *image = NULL;
+
+    bool jpgFound = false;
 }
