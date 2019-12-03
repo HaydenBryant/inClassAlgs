@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
     int newPadding = (4 - (newbi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
 
     newbi.biSizeImage = ((newbi.biWidth) * (sizeof(RGBTRIPLE)) + newPadding) * abs(newbi.biHeight);
-    newbf.bfSize = (newbi.biSizeImage + sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER)) ;
+    newbf.bfSize = (newbi.biSizeImage + sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER));
 
     // write outfile's BITMAPFILEHEADER
     fwrite(&newbf, sizeof(BITMAPFILEHEADER), 1, outptr);
