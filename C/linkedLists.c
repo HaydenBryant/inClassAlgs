@@ -7,7 +7,9 @@ typedef struct NODE
     struct NODE *next;
 } NODE;
 
-void addNode(int val, NODE* rootNode)
+NODE *rootNode = NULL;
+
+void addNode(int val)
 {
     //create a node
     //navigate to end of list
@@ -16,30 +18,86 @@ void addNode(int val, NODE* rootNode)
     NODE *newNode = malloc(sizeof(NODE));
     newNode->value = val;
     newNode->next = NULL;
-    if(rootNode->next == NULL)
+
+    if(rootNode == NULL)
     {
-        rootNode->next = newNode;
+        rootNode = newNode;
+        return;
     }
-    else
-    {
-        NODE* p = rootNode;
-        while(p->next != NULL)
-        {
-            p = p->next;
-        }
-        p->next = newNode;
+    // if(rootNode->next == NULL)
+    // {
+    //     rootNode->next = newNode;
+    // }
+    // else
+    // {
+    //     NODE* p = rootNode;
+    //     while(p->next != NULL)
+    //     {
+    //         p = p->next;
+    //     }
+    //     p->next = newNode;
+    // }
+
+    NODE* trav = rootNode;
+    while(trav->next != NULL){
+        trav = trav->next;
     }
+    trav->next = newNode;
 
     // newNode->next = NULL;
 
     // rootNode->next = newNode;
 }
 
+void displayList()
+{
+    //display list in order seperated by ','
+    // 5, 8, 9, 4
+    // 5, 8, 9
+    // 5
+    if(rootNode->next == NULL)
+    {
+        printf("%i\n", rootNode->value);
+    }
+    else
+    {
+        NODE *trav = rootNode;
+
+        do
+        {
+            printf("%i, ", trav->value);
+            trav = trav->next;
+        } while(trav->next != NULL);
+        printf("%i\n", trav->value);
+    }
+
+}
+
+int freeList()
+{
+    NODE *trav = rootNode;
+    while(rootNode->next != NULL)
+    {
+        if(trav->next != NULL)
+        {
+            trav = trav->next;
+        }
+        else
+        {
+            free(trav);
+            trav->next = NULL;
+        }
+    }
+
+    free(rootNode);
+    return 0;
+}
+
 int main(void)
 {
-    NODE rootNode;
-    rootNode.value = 5;
-    rootNode.next = NULL;
+    // NODE rootNode;
+    // rootNode.value = 5;
+    // rootNode.next = NULL;
     // NODE secondNode;
     // secondNode.value = 10;
     // secondNode.next = NULL;
@@ -48,9 +106,15 @@ int main(void)
     // printf("%i\n", secondNode.value);
     // printf("%i\n", aNode.next->value);
 
-    addNode(8, &rootNode);
-    addNode(9, &rootNode);
-    printf("%i\n", rootNode.next->value);
-    printf("%i\n", rootNode.next->next->value);
+    addNode(5);
+    addNode(8);
+    addNode(9);
+    addNode(4);
+    // printf("%i\n", rootNode->next->value);
+    // printf("%i\n", rootNode->next->next->value);
+    // printf("%i\n", rootNode->next->next->next->value);
     //rootnode.next->next->value
+    displayList();
+    freeList();
+
 }
