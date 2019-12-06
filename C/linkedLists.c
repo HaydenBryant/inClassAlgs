@@ -76,20 +76,13 @@ void displayList()
 int freeList()
 {
     NODE *trav = rootNode;
-    while(rootNode->next != NULL)
+    NODE *trav1;
+    while(trav != NULL)
     {
-        if(trav->next != NULL)
-        {
-            trav = trav->next;
-        }
-        else
-        {
-            free(trav);
-            trav->next = NULL;
-        }
+        trav1 = trav->next;
+        free(trav);
+        trav = trav1;
     }
-
-    free(rootNode);
     return 0;
 }
 
