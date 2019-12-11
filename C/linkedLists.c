@@ -75,14 +75,56 @@ void displayList()
 
 int freeList()
 {
-    NODE *trav = rootNode;
-    NODE *trav1;
-    while(trav != NULL)
+    if (rootNode == NULL)
     {
-        trav1 = trav->next;
-        free(trav);
-        trav = trav1;
+        return 0;
     }
+
+    NODE *freer = rootNode;
+    NODE *trav1;
+    while(freer != NULL)
+    {
+        trav1 = freer->next;
+        free(freer);
+        freer = trav1;
+    }
+    rootNode = NULL;
+    return 0;
+}
+
+void freeNode(NODE* aNode)
+{
+    if (aNode->next == NULL)
+    {
+        free(aNode);
+        return;
+    }
+
+    freeNode(aNode->next);
+    free(aNode);
+    return;
+}
+
+//return true or false
+NODE* hasValue(int value)
+{
+    if(rootNode == NULL) return NULL;
+
+    NODE *trav = rootNode;
+    while (trav != NULL)
+    {
+        if (trav->value == value)
+        {
+           printf("Found %i\n", value);
+           printf("%p\n", &trav);
+           return 0;
+        }
+        trav = trav->next;
+    }
+
+    printf("false\n");
+    //print out false and return NULL if the item does not exist in the list
+    //return 1 if the item does exist in the list
     return 0;
 }
 
@@ -108,6 +150,19 @@ int main(void)
     // printf("%i\n", rootNode->next->next->next->value);
     //rootnode.next->next->value
     displayList();
-    freeList();
+    hasValue(9);
+    hasValue(5);
+    hasValue(8);
+    hasValue(4);
+    // freeList();
+    // addNode(7);
+    // addNode(2);
+    // displayList();
+    // freeList();
+    addNode(2);
+    hasValue(7);
+    addNode(7);
+    hasValue(7);
+    freeNode(rootNode);
 
 }
