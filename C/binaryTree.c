@@ -59,7 +59,7 @@ void addNode(int val)
 
 void displayTreeOnEnter(BNODE *aNode)
 {
-    if (rootNode == NULL) return;
+    if (aNode == NULL) return;
 
     printf("%i ", aNode->value);
     if (aNode->low != NULL)
@@ -75,7 +75,7 @@ void displayTreeOnEnter(BNODE *aNode)
 
 void displayTreeOnExit(BNODE *aNode)
 {
-    if (rootNode == NULL) return;
+    if (aNode == NULL) return;
 
     if (aNode->low != NULL)
     {
