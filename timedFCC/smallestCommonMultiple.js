@@ -20,8 +20,9 @@ function smallestCommons(arr) {
     var max = 0;
 
   for(var i = 0; i < newArr.length; i++){
-    if
+    if(newArr[i] ){
 
+    }
   }
 
   return arr;
