@@ -61,40 +61,32 @@ void displayTreeOnEnter(BNODE *aNode)
 {
     if (rootNode == NULL) return;
 
-    while(true)
+    printf("%i ", aNode->value);
+    if (aNode->low != NULL)
     {
-        if (aNode->low != NULL)
-        {
-            displayTreeOnEnter(aNode->low);
-        }
-
-        if (aNode->high != NULL)
-        {
-            displayTreeOnEnter(aNode->high);
-        }
-        printf("%i ", aNode->value);
-        return;
+        displayTreeOnEnter(aNode->low);
     }
+    if (aNode->high != NULL)
+    {
+        displayTreeOnEnter(aNode->high);
+    }
+    return;
 }
 
 void displayTreeOnExit(BNODE *aNode)
 {
     if (rootNode == NULL) return;
 
-    while(true)
+    if (aNode->low != NULL)
     {
-        printf("%i ", aNode->value);
-        if (aNode->low != NULL)
-        {
-            displayTreeOnExit(aNode->low);
-        }
-
-        if (aNode->high != NULL)
-        {
-            displayTreeOnExit(aNode->high);
-        }
-        return;
+        displayTreeOnExit(aNode->low);
     }
+    if (aNode->high != NULL)
+    {
+        displayTreeOnExit(aNode->high);
+    }
+    printf("%i ", aNode->value);
+    return;
 }
 
 int main(void)
@@ -104,7 +96,6 @@ int main(void)
     {
         addNode(stream[i]);
     }
-
     displayTreeOnExit(rootNode);
     printf("\n");
     displayTreeOnEnter(rootNode);
