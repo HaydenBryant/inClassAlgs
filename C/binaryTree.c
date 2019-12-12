@@ -59,30 +59,63 @@ void addNode(int val)
 
 void displayTreeOnEnter(BNODE *aNode)
 {
-    if (rootNode == NULL) return NULL;
 
-    if(aNode->low != NULL)
-    {
-        displayTreeOnEnter(aNode->low);
-    }
-    else if(aNode->low == NULL && aNode->high != NULL)
-    {
-        displayTreeOnEnter(aNode->high);
-    }
-    
-    if (aNode->low == NULL && aNode->high == NULL)
-    {
-        printf("%i\n", aNode->value);
-    }
-    else if (aNode->high != NULL)
-    {
-        printf("%i\n", aNode->value);
-    }
 }
 
 void displayTreeOnExit(BNODE *aNode)
 {
+    if (rootNode == NULL) return;
 
+    while(true)
+    {
+        printf("%i ", aNode->value);
+        if (trav->low != NULL)
+        {
+            displayTreeOnExit(aNode->low);
+        }
+        if (trav->high != NULL)
+        {
+            displayTreeOnEnter(trav->high);
+        }
+        return;
+    }
+
+    //ternary
+    //if rootnode low and rootnode high null print root
+    //if rootnode low null and rootnode high not null print highs
+
+    // if (aNode->low != NULL)
+    // {
+    //     if(aNode->high != NULL)
+    //     {
+    //         printf("%i\n", aNode->value);
+    //         displayTreeOnEnter(aNode->low);
+    //     }
+    //     else
+    //     {
+    //         printf("%i\n", aNode->value);
+    //         displayTreeOnEnter(aNode->low);
+    //     }
+    //     // printf("%i\n", aNode->value);
+    //     // displayTreeOnEnter(aNode->low);
+    // }
+
+
+    // else if (aNode->low == NULL && aNode->high != NULL)
+    // {
+    //     displayTreeOnEnter(aNode->high);
+    //     printf("%i\n", aNode->value);
+    // }
+
+
+    // if (aNode->low == NULL && aNode->high == NULL)
+    // {
+    //     printf("%i\n", aNode->value);
+    // }
+    // else if (aNode->high != NULL)
+    // {
+    //     printf("%i\n", aNode->value);
+    // }
 }
 
 int main(void)
@@ -92,8 +125,11 @@ int main(void)
     {
         addNode(stream[i]);
     }
-    displayTreeOnEnter(rootNode);
-    printf("\n");
+    // displayTreeOnEnter(rootNode);
+    // printf("\n");
+    // printf("%i\n", rootNode->value);
+    // printf("%i\n", rootNode->low->value);
+    // printf("%i\n", rootNode->low->low->value);
     displayTreeOnExit(rootNode);
 
 }
