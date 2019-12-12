@@ -4,7 +4,7 @@ function palindrome(str) {
 
     // str = str.toLowerCase().replace(junk, "")
 
-        newStr = ""
+        var newStr = ""
     
         for(var i = 0; i < str.length; i++){
             if(str[i].match(/^[0-9a-zA-Z]+$/)){
@@ -13,10 +13,8 @@ function palindrome(str) {
         }
     
         if(newStr === newStr.split("").reverse().join("")){
-            console.log(true);
             return true;
         } else {
-            console.log(false);
             return false;
         }
       }
