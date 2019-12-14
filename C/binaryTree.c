@@ -89,6 +89,27 @@ void displayTreeOnExit(BNODE *aNode)
     return;
 }
 
+void freeNode(BNODE *aNode)
+{
+    if (aNode == NULL) return;
+
+    while (true)
+    {
+        if (aNode != NULL)
+        {
+            freeNode(aNode->low);
+        }
+
+        if (aNode->high != NULL)
+        {
+            freeNode(aNode->high);
+        }
+
+        free(aNode);
+        return;
+    }
+}
+
 int main(void)
 {
     int stream[] = {5, 8, 9, 4, 6, 7, 2, 3, 1, 10};
@@ -99,5 +120,6 @@ int main(void)
     displayTreeOnExit(rootNode);
     printf("\n");
     displayTreeOnEnter(rootNode);
+    freeNode(rootNode);
 
 }
