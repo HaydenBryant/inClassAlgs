@@ -15,7 +15,43 @@ typedef struct BNODE
     struct BNODE *low;
 } BNODE;
 
+typedef struct QNODE
+{
+    int level;
+    BNODE *bnode;
+    struct QNODE *next;
+} QNODE;
+
+QNODE *head = NULL;
+QNODE *tail = NULL;
+
 BNODE *rootNode = NULL;
+
+void push(BNODE *bnode, int level)
+{
+    QNODE *newQNode = malloc(sizeof(QNODE));
+    newQNode->bnode = bnode;
+    newQNode->next = NULL;
+
+    if(head == NULL)
+    {
+        head = newQNode;
+        tail = newQNode;
+        return;
+    }
+
+    tail->next = newQNode;
+    tail = newQNode;
+}
+
+BNODE *pop()
+{
+    QNODE *temp = head;
+    head = temp->next;
+    BNODE *btemp = temp->bnode;
+    free(temp);
+    return btemp;
+}
 
 void addNode(int val)
 {
@@ -93,21 +129,21 @@ void freeNode(BNODE *aNode)
 {
     if (aNode == NULL) return;
 
-    while (true)
-    {
-        if (aNode != NULL)
-        {
-            freeNode(aNode->low);
-        }
+    //dont need ifs
+    // if (aNode != NULL)
+    // {
+    //     freeNode(aNode->low);
+    // }
+    // if (aNode->high != NULL)
+    // {
+    //     freeNode(aNode->high);
+    // }
 
-        if (aNode->high != NULL)
-        {
-            freeNode(aNode->high);
-        }
+    freeNode(aNode->low);
+    freeNode(aNode->high);
 
-        free(aNode);
-        return;
-    }
+    free(aNode);
+    return;
 }
 
 BNODE* hasValue(int val)
@@ -141,8 +177,30 @@ BNODE* hasValue(int val)
         break;
     }
 
-    printf("false\n");
-    return 0;
+    printf("%i was not found\n", val);
+    return NULL;
+}
+
+void displayLevels()
+{
+    int level = 0;
+    int currentLevel = 0;
+    push(rootNode);
+    level = 1;
+    while (head != NULL)
+    {
+        BNODE* current = pop();
+        //add children to queue for future processing
+        if (current ->low != NULL)
+        {
+            push(current->low);
+        }
+        if (current->high != NULL)
+        {
+            push(current->high);
+        }
+        printf("%i ", current->value);
+    }
 }
 
 int main(void)
@@ -155,11 +213,12 @@ int main(void)
     displayTreeOnExit(rootNode);
     printf("\n");
     displayTreeOnEnter(rootNode);
-    hasValue(5);
-    hasValue(10);
-    hasValue(4);
-    hasValue(1);
-    hasValue(11);
+    // hasValue(5);
+    // hasValue(10);
+    // hasValue(4);
+    // hasValue(1);
+    // hasValue(11);
+    displayLevels();
     freeNode(rootNode);
 
 }
