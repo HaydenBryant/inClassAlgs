@@ -110,6 +110,41 @@ void freeNode(BNODE *aNode)
     }
 }
 
+BNODE* hasValue(int val)
+{
+    if(rootNode == NULL) return NULL;
+
+    BNODE *trav = rootNode;
+
+    while (true)
+    {
+        if (trav->value == val)
+        {
+            printf("Found %i\n", val);
+            printf("%p\n", &trav);
+            return 0;
+        }
+
+
+        if (val > trav->value && trav->high != NULL)
+        {
+            trav = trav->high;
+            continue;
+        }
+
+        if (val < trav->value && trav->low != NULL)
+        {
+            trav = trav->low;
+            continue;
+        }
+
+        break;
+    }
+
+    printf("false\n");
+    return 0;
+}
+
 int main(void)
 {
     int stream[] = {5, 8, 9, 4, 6, 7, 2, 3, 1, 10};
@@ -120,6 +155,11 @@ int main(void)
     displayTreeOnExit(rootNode);
     printf("\n");
     displayTreeOnEnter(rootNode);
+    hasValue(5);
+    hasValue(10);
+    hasValue(4);
+    hasValue(1);
+    hasValue(11);
     freeNode(rootNode);
 
 }
