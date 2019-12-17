@@ -185,7 +185,7 @@ void displayLevels()
 {
     int level = 0;
     int currentLevel = 0;
-    push(rootNode);
+    push(rootNode, level);
     level = 1;
     while (head != NULL)
     {
@@ -193,13 +193,14 @@ void displayLevels()
         //add children to queue for future processing
         if (current ->low != NULL)
         {
-            push(current->low);
+            push(current->low, (currentLevel + 1));
         }
         if (current->high != NULL)
         {
-            push(current->high);
+            push(current->high, (currentLevel + 1));
         }
-        printf("%i ", current->value);
+        printf("%i ", current->);
+        currentLevel++;
     }
 }
 
@@ -210,15 +211,16 @@ int main(void)
     {
         addNode(stream[i]);
     }
-    displayTreeOnExit(rootNode);
+    // displayTreeOnExit(rootNode);
     printf("\n");
-    displayTreeOnEnter(rootNode);
+    // displayTreeOnEnter(rootNode);
     // hasValue(5);
     // hasValue(10);
     // hasValue(4);
     // hasValue(1);
     // hasValue(11);
     displayLevels();
+    printf("\n");
     freeNode(rootNode);
 
 }
