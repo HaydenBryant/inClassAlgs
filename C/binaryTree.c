@@ -27,32 +27,6 @@ QNODE *tail = NULL;
 
 BNODE *rootNode = NULL;
 
-void push(BNODE *bnode, int level)
-{
-    QNODE *newQNode = malloc(sizeof(QNODE));
-    newQNode->bnode = bnode;
-    newQNode->next = NULL;
-
-    if(head == NULL)
-    {
-        head = newQNode;
-        tail = newQNode;
-        return;
-    }
-
-    tail->next = newQNode;
-    tail = newQNode;
-}
-
-BNODE *pop()
-{
-    QNODE *temp = head;
-    head = temp->next;
-    BNODE *btemp = temp->bnode;
-    free(temp);
-    return btemp;
-}
-
 void addNode(int val)
 {
     BNODE *newNode = malloc(sizeof(BNODE));
@@ -181,26 +155,67 @@ BNODE* hasValue(int val)
     return NULL;
 }
 
+void push(BNODE *bnode, int level)
+{
+    QNODE *newQNode = malloc(sizeof(QNODE));
+    newQNode->bnode = bnode;
+    newQNode->next = NULL;
+    newQNode->level = level;
+
+    if(head == NULL)
+    {
+        head = newQNode;
+        tail = newQNode;
+        printf("%i\n", newQNode->level);
+        return;
+    }
+
+    tail->next = newQNode;
+    tail = newQNode;
+    printf("%i\n", newQNode->level);
+}
+
+BNODE *pop()
+{
+    QNODE *temp = head;
+    head = temp->next;
+    BNODE *btemp = temp->bnode;
+    free(temp);
+    return btemp;
+}
+
 void displayLevels()
 {
     int level = 0;
     int currentLevel = 0;
-    push(rootNode, level);
-    level = 1;
+    push(rootNode, currentLevel);
+    // currentLevel = 1;
     while (head != NULL)
     {
         BNODE* current = pop();
+        level = currentLevel;
         //add children to queue for future processing
-        if (current ->low != NULL)
+        if (current->low != NULL)
         {
-            push(current->low, (currentLevel + 1));
+            currentLevel++;
+            push(current->low, currentLevel);
+            currentLevel = level;
         }
         if (current->high != NULL)
         {
-            push(current->high, (currentLevel + 1));
+            currentLevel++;
+            push(current->high, currentLevel);
+            currentLevel = level;
         }
-        printf("%i ", current->);
+
+
+        if (level > currentLevel)
+        {
+            printf("\n");
+        }
+        // printf("%i ", current->value);
         currentLevel++;
+
     }
 }
 
