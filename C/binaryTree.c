@@ -166,13 +166,11 @@ void push(BNODE *bnode, int level)
     {
         head = newQNode;
         tail = newQNode;
-        printf("%i\n", newQNode->level);
         return;
     }
 
     tail->next = newQNode;
     tail = newQNode;
-    printf("%i\n", newQNode->level);
 }
 
 BNODE *pop()
@@ -186,36 +184,38 @@ BNODE *pop()
 
 void displayLevels()
 {
-    int level = 0;
+    int prevLevel = 0;
     int currentLevel = 0;
     push(rootNode, currentLevel);
-    // currentLevel = 1;
+    currentLevel = 1;
     while (head != NULL)
     {
         BNODE* current = pop();
-        level = currentLevel;
         //add children to queue for future processing
         if (current->low != NULL)
         {
-            currentLevel++;
             push(current->low, currentLevel);
-            currentLevel = level;
         }
         if (current->high != NULL)
         {
-            currentLevel++;
             push(current->high, currentLevel);
-            currentLevel = level;
         }
 
-
-        if (level > currentLevel)
+        if(tail->level > currentLevel)
         {
-            printf("\n");
+            printf("");
         }
-        // printf("%i ", current->value);
+
+        // if (currentLevel > level)
+        // {
+        //     printf("\n");
+        //     currentLevel++;
+        // }
+
         currentLevel++;
 
+
+        printf("%i ", current->value);
     }
 }
 
