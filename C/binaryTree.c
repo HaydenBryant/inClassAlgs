@@ -188,32 +188,26 @@ void displayLevels()
     int currentLevel = 0;
     push(rootNode, currentLevel);
     currentLevel = 1;
-    while (head != NULL)
+    while (head->next != NULL)
     {
         BNODE* current = pop();
+        printf("%i", current->value);
         //add children to queue for future processing
         if (current->low != NULL)
         {
+            currentLevel++;
             push(current->low, currentLevel);
         }
         if (current->high != NULL)
         {
+            currentLevel++;
             push(current->high, currentLevel);
         }
 
-        if(tail->level > currentLevel)
+        if (currentLevel < head->level)
         {
-            printf("");
+            printf("\n");
         }
-
-        // if (currentLevel > level)
-        // {
-        //     printf("\n");
-        //     currentLevel++;
-        // }
-
-        currentLevel++;
-
 
         printf("%i ", current->value);
     }

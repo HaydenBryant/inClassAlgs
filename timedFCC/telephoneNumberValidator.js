@@ -13,7 +13,7 @@ function telephoneCheck(str) {
     var parenthesis = 0;
     
     for(var i = 0; i < str.length; i++)
-    {
+    { ``
       if(str[i] == "(" || str[i] == ")"){
         parenthesis ++;
       }
