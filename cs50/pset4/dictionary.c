@@ -18,7 +18,7 @@ typedef struct node
 node;
 
 // Represents a trie
-node *root;
+node *root = NULL;
 
 // Loads dictionary into memory, returning true if successful else false
 bool load(const char *dictionary)
@@ -49,7 +49,27 @@ bool load(const char *dictionary)
     // Insert words into trie
     while (fscanf(file, "%s", word) != EOF)
     {
-        // TODO
+        NODE *trav = root;
+        while(trav != NULL)
+        {
+            if(trav[i] < word[i])
+            {
+                trav = trav->node;
+                i++;
+                continue;
+            }
+            if(trav[i] < word[i])
+            {
+                trav = trac->node;
+                i++;
+                continue;
+            }
+            if(trav->node == NULL)
+            {
+                trav->node = word;
+            }
+        }
+
     }
 
     // Close dictionary
