@@ -16,12 +16,9 @@ typedef struct node
     struct node *children[N];
 }
 node;
-p
+
 // Represents a trie
 node *root;
-
-//counter for words
-unsigned long words = 0;
 
 // Loads dictionary into memory, returning true if successful else false
 bool load(const char *dictionary)
@@ -53,13 +50,6 @@ bool load(const char *dictionary)
     while (fscanf(file, "%s", word) != EOF)
     {
         // TODO
-        if(!insert(root, word))
-        {
-            unload();
-            break;
-        }
-
-        words++
     }
 
     // Close dictionary
@@ -73,7 +63,7 @@ bool load(const char *dictionary)
 unsigned int size(void)
 {
     // TODO
-    return words;
+    return 0;
 }
 
 // Returns true if word is in dictionary else false
@@ -87,6 +77,5 @@ bool check(const char *word)
 bool unload(void)
 {
     // TODO
-
     return false;
 }
