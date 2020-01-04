@@ -46,11 +46,14 @@ bool load(const char *dictionary)
     // Buffer for a word
     char word[LENGTH + 1];
 
+    NODE *trav = root;
+
+
     // Insert words into trie
     while (fscanf(file, "%s", word) != EOF)
     {
-        NODE *trav = root;
-        while(trav != NULL)
+        int len = strlen(word);
+        for(int i = 0; i < len; i++)
         {
             if(trav[i] < word[i])
             {
